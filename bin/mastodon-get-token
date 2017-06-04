@@ -1,0 +1,47 @@
+#!/usr/bin/env node
+'use strict'  //  -*- mode: javascript -*- 
+
+const fs = require('fs')
+const Tilda = require('tilda')
+const pkg = require('../package.json')
+const acct = require('..')
+
+new Tilda({
+  name: 'mastodon-get-token',
+  version: pkg.version,
+  description: pkg.description,
+  examples: [
+    'mastodon-get-token test7',
+    'mastodon-get-token --all    (not implemented yet)'
+  ],
+  args: [
+    { name: 'username', type: 'string', desc: 'unique name for this acct' },
+  ]
+}).main(action => {
+  const afile = 'app-registration.json'
+  const ufile = 'account-details-' + action.args.username + '.json'
+  const filename = 'access-token-' + action.args.username + '.json'
+  
+  
+  fs.access(filename, fs.constants.R_OK, err => {
+    if (err === null) {
+      console.log('already get token? File exists:', filename)
+    } else if (err.code === 'ENOENT') {
+      const reg = require('./' + afile)
+      const user = require('./' + ufile)
+      acct.getToken(reg, user)
+        .then(data => {
+          fs.writeFile(filename, JSON.stringify(data, null, 2), (err) => {
+            if (err) throw err
+            console.log(filename, 'written')
+          })
+        })
+    } else {
+      throw err
+    }
+  })
+})
+
+
+
+

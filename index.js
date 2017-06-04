@@ -39,5 +39,5 @@ function getToken(reg, user) {
     // .catch((error) => console.error(error));
 }
 
-module.exports = getToken
+module.exports.getToken = getToken
 

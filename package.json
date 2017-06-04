@@ -1,0 +1,32 @@
+{
+  "name": "mastodon-get-token",
+  "version": "0.0.1",
+  "description": "Do the oauth dance to get a user's access token, knowing the password.",
+  "main": "index.js",
+  "bin": "bin/mastodon-get-token",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/sandhawke/mastodon-get-token.git"
+  },
+  "keywords": [
+    "mastodon",
+    "oauth",
+    "access",
+    "tokens",
+    "login",
+    "bot"
+  ],
+  "author": "Sandro Hawke (http://hawke.org/sandro)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sandhawke/mastodon-get-token/issues"
+  },
+  "homepage": "https://github.com/sandhawke/mastodon-get-token#readme",
+  "dependencies": {
+    "axios": "^0.16.2",
+    "tilda": "^4.4.10"
+  }
+}
